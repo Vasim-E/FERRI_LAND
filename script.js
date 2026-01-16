@@ -50,12 +50,45 @@ revealOnScroll();
 // Parallax effect for hero (subtle)
 const heroImage = document.querySelector('.floating-product');
 window.addEventListener('mousemove', (e) => {
-    if(window.innerWidth > 900) {
+    if (window.innerWidth > 900) {
         const x = (window.innerWidth - e.pageX) / 50;
         const y = (window.innerHeight - e.pageY) / 50;
-        
-        if(heroImage) {
+
+        if (heroImage) {
             heroImage.style.transform = `translate(${x}px, ${y}px) rotate(${x * 0.5}deg)`;
         }
     }
+});
+
+// Mobile Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+const navLinksItems = document.querySelectorAll('.nav-links li');
+
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+
+        // Toggle icon between bars and times (X)
+        const icon = hamburger.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+}
+
+// Close mobile menu when a link is clicked
+navLinksItems.forEach(item => {
+    item.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            const icon = hamburger.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
 });

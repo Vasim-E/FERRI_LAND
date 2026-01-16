@@ -6,11 +6,11 @@
     --text-dark: #2C2C2C;
     --text-light: #666666;
     --white: #FFFFFF;
-    
+
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Montserrat', sans-serif;
-    
-    --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
     --shadow-gold: 0 10px 30px rgba(197, 160, 89, 0.2);
 }
 
@@ -27,7 +27,8 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
-    cursor: none; /* Custom cursor */
+    cursor: none;
+    /* Custom cursor */
 }
 
 /* Custom Cursor */
@@ -73,7 +74,8 @@ body:hover .cursor-outline {
     left: 0;
     width: 100%;
     padding: 1.5rem 0;
-    background: rgba(253, 251, 247, 0.85); /* trans bg */
+    background: rgba(253, 251, 247, 0.85);
+    /* trans bg */
     backdrop-filter: blur(10px);
     z-index: 1000;
     transition: all 0.3s ease;
@@ -81,7 +83,7 @@ body:hover .cursor-outline {
 
 .navbar.scrolled {
     padding: 1rem 0;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
 }
 
 .nav-container {
@@ -167,11 +169,22 @@ body:hover .cursor-outline {
 .hero-bg-elements .circle {
     position: absolute;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(197,160,89,0.1) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
 }
 
-.c1 { width: 500px; height: 500px; top: -100px; right: -100px; }
-.c2 { width: 300px; height: 300px; bottom: 50px; left: -50px; }
+.c1 {
+    width: 500px;
+    height: 500px;
+    top: -100px;
+    right: -100px;
+}
+
+.c2 {
+    width: 300px;
+    height: 300px;
+    bottom: 50px;
+    left: -50px;
+}
 
 .hero-content {
     display: flex;
@@ -256,7 +269,7 @@ body:hover .cursor-outline {
 .floating-product {
     max-width: 120%;
     width: 600px;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
     animation: float 6s ease-in-out infinite;
     z-index: 2;
 }
@@ -265,7 +278,7 @@ body:hover .cursor-outline {
     position: absolute;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(230, 200, 133, 0.4) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(circle, rgba(230, 200, 133, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -274,9 +287,17 @@ body:hover .cursor-outline {
 
 /* Animations */
 @keyframes float {
-    0% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-35px) rotate(2deg); }
-    100% { transform: translateY(0px) rotate(0deg); }
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-35px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
 }
 
 .fade-in-up {
@@ -291,16 +312,30 @@ body:hover .cursor-outline {
     animation: fadeInRight 1s forwards 0.5s;
 }
 
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.delay-3 {
+    animation-delay: 0.6s;
+}
 
 @keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeInRight {
-    to { opacity: 1; transform: translateX(0); }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* Features Section */
@@ -319,7 +354,7 @@ body:hover .cursor-outline {
 .feature-card {
     text-align: center;
     padding: 2rem;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 20px;
     transition: all 0.3s;
 }
@@ -354,6 +389,7 @@ body:hover .cursor-outline {
     margin-bottom: 1rem;
     color: #4a4a4a;
 }
+
 .feature-card p {
     font-size: 0.9rem;
     color: var(--text-light);
@@ -373,7 +409,8 @@ body:hover .cursor-outline {
 
 .image-frame {
     width: 100%;
-    height: 500px; /* Reduced specific height */
+    /* height: 500px; */
+    /* Reduced specific height */
     aspect-ratio: 4/5;
     background: #ddd;
     position: relative;
@@ -390,7 +427,8 @@ body:hover .cursor-outline {
     justify-content: center;
     align-items: center;
 }
-.placeholder-lifestyle::before {    
+
+.placeholder-lifestyle::before {
     content: 'Lifestyle Image';
     color: #888;
 }
@@ -441,7 +479,8 @@ body:hover .cursor-outline {
 .parallax-section {
     height: 400px;
     background-color: var(--primary-red);
-    background-image: url('https://images.unsplash.com/photo-1542316409-e883262bb835?q=80&w=2670&auto=format&fit=crop'); /* Placeholder Texture */
+    background-image: url('https://images.unsplash.com/photo-1542316409-e883262bb835?q=80&w=2670&auto=format&fit=crop');
+    /* Placeholder Texture */
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -498,7 +537,7 @@ body:hover .cursor-outline {
 
 .product-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
 
 .product-card.highlight {
@@ -574,7 +613,7 @@ footer {
     grid-template-columns: 2fr 1fr 1fr;
     gap: 4rem;
     margin-bottom: 3rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 3rem;
 }
 
@@ -592,7 +631,8 @@ footer {
     letter-spacing: 1px;
 }
 
-.footer-col a, .footer-col p {
+.footer-col a,
+.footer-col p {
     display: block;
     color: #999;
     text-decoration: none;
@@ -613,7 +653,7 @@ footer {
 .socials a {
     width: 40px;
     height: 40px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -655,19 +695,53 @@ footer {
     transition: all 0.8s ease;
 }
 
-.reveal-left.active, .reveal-right.active {
+.reveal-left.active,
+.reveal-right.active {
     opacity: 1;
     transform: translateX(0);
 }
 
 /* Responsive */
 @media (max-width: 900px) {
+    .hamburger {
+        display: block;
+        z-index: 1001;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--bg-cream);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+
+    .nav-actions {
+        display: none;
+        /* Hide 'Shop Now' button on mobile nav for simplicity, or move into menu */
+    }
+
     .hero-content {
         flex-direction: column-reverse;
         text-align: center;
         padding-top: 2rem;
     }
-    
+
     .hero-text {
         margin-top: 2rem;
     }
@@ -675,33 +749,70 @@ footer {
     .hero-text h1 {
         font-size: 3rem;
     }
-    
+
     .hero-text p {
         margin: 0 auto 2rem;
     }
-    
+
     .hero-image {
         height: 400px;
         width: 100%;
+        margin-top: 2rem;
     }
-    
+
     .floating-product {
-        width: 400px;
+        width: 70%;
+        max-width: 350px;
     }
-    
+
     .about-container {
         grid-template-columns: 1fr;
+        text-align: center;
     }
-    
+
+    .about-text h2 {
+        font-size: 2.5rem;
+    }
+
     .feature-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
-    
+
     .footer-content {
         grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
     }
-    
-    .cursor-dot, .cursor-outline {
-        display: none; /* Hide custom cursor on touch devices usually */
+
+    .footer-col {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .socials {
+        justify-content: center;
+    }
+
+    .cursor-dot,
+    .cursor-outline {
+        display: none;
+        /* Hide custom cursor on touch devices */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .btn {
+        padding: 0.8rem 2rem;
+        font-size: 0.8rem;
     }
 }
