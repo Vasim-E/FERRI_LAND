@@ -36,8 +36,14 @@ const revealOnScroll = () => {
 
     revealElements.forEach((reveal) => {
         const elementTop = reveal.getBoundingClientRect().top;
-        if (elementTop < windowHeight - elementVisible) {
+        const elementBottom = reveal.getBoundingClientRect().bottom;
+
+        // Check if element is visible in viewport
+        if (elementTop < windowHeight - elementVisible && elementBottom > 0) {
             reveal.classList.add('active');
+        } else {
+            // Remove active class if out of view to re-trigger animation next time
+            reveal.classList.remove('active');
         }
     });
 };
@@ -97,32 +103,55 @@ navLinksItems.forEach(item => {
 const modal = document.getElementById('orderModal');
 const closeBtn = document.querySelector('.close-modal');
 const shopButtons = document.querySelectorAll('.btn-shop-now');
-const modalTitle = document.getElementById('modalProductTitle');
+const navbarShopBtn = document.getElementById('navShopBtn');
 const orderForm = document.querySelector('.order-form');
 
-// Open Modal
+// Function to open modal
+const openModal = (preSelectProductName = null) => {
+    // Reset all quantities to 0
+    const qtyInputs = document.querySelectorAll('.qty-input');
+    qtyInputs.forEach(input => input.value = 0);
+
+    // If specific product clicked, set its qty to 1
+    if (preSelectProductName) {
+        // Simple exact match logic
+        const productItems = document.querySelectorAll('.modal-product-item');
+        productItems.forEach(item => {
+            if (item.getAttribute('data-name') === preSelectProductName) {
+                const qtyInput = item.querySelector('.qty-input');
+                if (qtyInput) qtyInput.value = 1;
+            }
+        });
+    }
+
+    modal.style.display = "block";
+    void modal.offsetWidth; // Trigger reflow
+    modal.classList.add('show');
+};
+
+// Open Modal from Product Cards
 shopButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        // Find the product title associated with the clicked button
-        // The button is inside .card-details, which is sibling to .card-image
-        // We can traverse up to .product-card then down to h3
         const card = e.target.closest('.product-card');
         const productTitle = card.querySelector('h3').textContent;
-
-        modalTitle.textContent = `Order ${productTitle}`;
-        modal.style.display = "block";
-        // Trigger reflow to enable transition
-        void modal.offsetWidth;
-        modal.classList.add('show');
+        openModal(productTitle);
     });
 });
+
+// Open Modal from Navbar
+if (navbarShopBtn) {
+    navbarShopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(null); // Open with all 0
+    });
+}
 
 // Close Modal Function
 const closeModal = () => {
     modal.classList.remove('show');
     setTimeout(() => {
         modal.style.display = "none";
-    }, 300); // Wait for transition
+    }, 300);
 };
 
 // Close on X click
@@ -137,14 +166,58 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Handle Form Submit (Simulation)
+// Quantity Button Logic
+const mpQtyContainers = document.querySelectorAll('.mp-qty');
+
+mpQtyContainers.forEach(container => {
+    const minusBtn = container.querySelector('.minus');
+    const plusBtn = container.querySelector('.plus');
+    const input = container.querySelector('.qty-input');
+
+    minusBtn.addEventListener('click', () => {
+        let currentValue = parseInt(input.value) || 0;
+        if (currentValue > 0) {
+            input.value = currentValue - 1;
+        }
+    });
+
+    plusBtn.addEventListener('click', () => {
+        let currentValue = parseInt(input.value) || 0;
+        input.value = currentValue + 1;
+    });
+});
+
+// Handle Form Submit
 if (orderForm) {
     orderForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        // Here you would typically send the data to a backend or WhatsApp
-        // For now, let's just show an alert and close the modal
-        alert(`Thank you for your order of ${modalTitle.textContent.replace('Order ', '')}! We will contact you shortly.`);
+
+        // Collect ordered items
+        const orderedItems = [];
+        const productItems = document.querySelectorAll('.modal-product-item');
+
+        productItems.forEach(item => {
+            const name = item.getAttribute('data-name');
+            const qty = parseInt(item.querySelector('.qty-input').value) || 0;
+            if (qty > 0) {
+                orderedItems.push(`${name} (x${qty})`);
+            }
+        });
+
+        if (orderedItems.length === 0) {
+            alert("Please add at least one item to your order.");
+            return;
+        }
+
+        const customerName = document.getElementById('customerName').value;
+
+        // Construct message
+        const message = `Thank you ${customerName}! Your order has been placed:\n\n${orderedItems.join('\n')}\n\nWe will contact you shortly to confirm details.`;
+
+        alert(message);
         closeModal();
         orderForm.reset();
+        // Reset quantities manually
+        document.querySelectorAll('.qty-input').forEach(input => input.value = 0);
     });
 }

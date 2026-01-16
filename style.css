@@ -158,7 +158,9 @@ body:hover .cursor-outline {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
+    /* Allow growth if content is tall */
     position: relative;
     display: flex;
     align-items: center;
@@ -761,6 +763,8 @@ footer {
         flex-direction: column-reverse;
         text-align: center;
         padding-top: 2rem;
+        padding-bottom: 3rem;
+        /* Extra space for scroll */
     }
 
     .hero-text {
@@ -836,6 +840,14 @@ footer {
         padding: 0.8rem 2rem;
         font-size: 0.8rem;
     }
+
+    .parallax-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .parallax-section {
+        height: 200px;
+    }
 }
 
 /* Slideshow Container */
@@ -890,28 +902,28 @@ footer {
 
 /* Wrapper Animation Cycles */
 .slide-1 {
-    animation: wrapperFade1 10s infinite;
+    animation: wrapperFade1 15s infinite;
 }
 
 .slide-2 {
-    animation: wrapperFade2 10s infinite;
+    animation: wrapperFade2 15s infinite;
 }
 
 /* Inner Element Animations (Parallax/Float) */
 .slide-1 .slide-front {
-    animation: floatFront 10s ease-in-out infinite;
+    animation: floatFront 15s ease-in-out infinite;
 }
 
 .slide-1 .slide-back {
-    animation: floatBack 10s ease-in-out infinite;
+    animation: floatBack 15s ease-in-out infinite;
 }
 
 .slide-2 .slide-front {
-    animation: floatFront 10s ease-in-out infinite;
+    animation: floatFront 15s ease-in-out infinite;
 }
 
 .slide-2 .slide-back {
-    animation: floatBack 10s ease-in-out infinite;
+    animation: floatBack 15s ease-in-out infinite;
 }
 
 /* Keyframes for Wrapper Visibility */
@@ -972,7 +984,7 @@ footer {
 /* Keyframes for Inner Elements Movement */
 @keyframes floatFront {
     0% {
-        transform: translate(-50%, -50%) translateX(0px) rotate(0deg);
+        transform: translate(-50%, -50%) translateX(0px) rotate(10deg);
     }
 
     50% {
@@ -980,7 +992,7 @@ footer {
     }
 
     100% {
-        transform: translate(-50%, -50%) translateX(0px) rotate(0deg);
+        transform: translate(-50%, -50%) translateX(0px) rotate(10deg);
     }
 }
 
@@ -1093,7 +1105,8 @@ footer {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
@@ -1102,11 +1115,114 @@ footer {
     font-size: 1rem;
     outline: none;
     transition: border-color 0.3s;
+    background-color: #fff;
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     border-color: var(--primary-gold);
+}
+
+
+
+.modal-products {
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 2rem;
+    padding-right: 5px;
+}
+
+.modal-product-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    margin-bottom: 0.8rem;
+    background: #fafafa;
+}
+
+.modal-product-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.mp-info {
+    flex: 1;
+}
+
+.mp-info h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+    color: var(--text-dark);
+}
+
+.mp-info p {
+    color: var(--primary-red);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.mp-qty {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100px;
+    /* Reduced fixed width or auto */
+}
+
+.qty-btn {
+    background: #f0f0f0;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+    font-size: 0.8rem;
+    transition: background 0.3s;
+}
+
+.qty-btn:hover {
+    background: #e0e0e0;
+}
+
+.mp-qty input {
+    width: 40px;
+    border: none;
+    text-align: center;
+    font-size: 0.9rem;
+    background: #fff;
+    padding: 0;
+    height: 30px;
+    color: var(--text-dark);
+    font-weight: 600;
+    outline: none;
+    pointer-events: none;
+    /* User uses buttons */
+}
+
+/* Hide spinner for number input */
+.mp-qty input::-webkit-inner-spin-button,
+.mp-qty input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.customer-details h3 {
+    font-size: 1.1rem;
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
 }
 
 .btn-block {

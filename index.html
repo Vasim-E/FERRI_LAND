@@ -35,7 +35,7 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <a href="#" class="btn-text">Shop Now</a>
+                <a href="#" class="btn-text" id="navShopBtn">Shop Now</a>
             </div>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
@@ -216,23 +216,52 @@
     <div id="orderModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2 id="modalProductTitle">Place Order</h2>
+            <h2 id="modalTitle">Place Your Order</h2>
             <form class="order-form">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" placeholder="Your Name" required>
+                <div class="modal-products">
+                    <!-- Product 1 -->
+                    <div class="modal-product-item" data-name="Lovely Mom's Kimchi">
+                        <img src="rubino_product_hero.png" alt="Kimchi">
+                        <div class="mp-info">
+                            <h4>Lovely Mom's Kimchi</h4>
+                            <p>₹199</p>
+                        </div>
+                        <div class="mp-qty">
+                            <button type="button" class="qty-btn minus"><i class="fas fa-minus"></i></button>
+                            <input type="number" min="0" value="0" class="qty-input" readonly>
+                            <button type="button" class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="modal-product-item" data-name="Ferri Grand Box">
+                        <img src="rubino_product_hero2.png" alt="Ferri Grand Box">
+                        <div class="mp-info">
+                            <h4>Ferri Grand Box</h4>
+                            <p>₹299</p>
+                        </div>
+                        <div class="mp-qty">
+                            <button type="button" class="qty-btn minus"><i class="fas fa-minus"></i></button>
+                            <input type="number" min="0" value="0" class="qty-input" readonly>
+                            <button type="button" class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" placeholder="Your Phone Number" required>
-                </div>
-                <div class="form-group">
-                    <label>Address</label>
-                    <textarea placeholder="Your Delivery Address" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Quantity</label>
-                    <input type="number" min="1" value="1" required>
+
+                <div class="customer-details">
+                    <h3>Delivery Details</h3>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="customerName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="customerPhone" placeholder="Your Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea id="customerAddress" placeholder="Your Delivery Address" rows="2" required></textarea>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Confirm Order</button>
             </form>
