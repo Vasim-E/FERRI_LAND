@@ -1268,3 +1268,75 @@ footer {
     font-size: 1rem;
     margin-top: 1rem;
 }
+
+/* Distributors Section */
+.distributors-section {
+    padding: 6rem 0;
+    background-color: var(--white);
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.distributors-section::before {
+    /* Subtle watermark/pattern */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(197, 160, 89, 0.1), transparent 40%);
+    pointer-events: none;
+}
+
+.distributor-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+}
+
+.dist-text {
+    flex: 1;
+}
+
+.dist-text h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--primary-red);
+    margin-bottom: 1rem;
+}
+
+.dist-action {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-lg {
+    padding: 1.2rem 3rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-subtitle {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .distributor-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .dist-action {
+        justify-content: center;
+    }
+}

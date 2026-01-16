@@ -284,3 +284,71 @@ if (orderForm) {
         updateTotals(); // Reset totals display
     });
 }
+
+// Distributor Modal Logic
+const distModal = document.getElementById('distributorModal');
+const btnDistributor = document.getElementById('btnDistributor');
+const closeDistBtn = document.querySelector('.close-dist-modal'); // Updated selector
+const distForm = document.getElementById('distributorForm');
+
+const openDistModal = () => {
+    distModal.style.display = "block";
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            distModal.classList.add('show');
+        });
+    });
+};
+
+const closeDistModal = () => {
+    distModal.classList.remove('show');
+    setTimeout(() => {
+        distModal.style.display = "none";
+    }, 300);
+};
+
+if (btnDistributor) {
+    btnDistributor.addEventListener('click', (e) => {
+        e.preventDefault();
+        openDistModal();
+    });
+}
+
+if (closeDistBtn) {
+    closeDistBtn.addEventListener('click', closeDistModal);
+}
+
+window.addEventListener('click', (e) => {
+    if (e.target == distModal) {
+        closeDistModal();
+    }
+});
+
+if (distForm) {
+    distForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('distName').value;
+        const phone = document.getElementById('distPhone').value;
+        const address = document.getElementById('distAddress').value;
+        const pincode = document.getElementById('distPincode').value;
+
+        // Construct WhatsApp Message
+        let waMessage = `*New Distributor Inquiry* 🤝\n\n`;
+        waMessage += `*Partner Details:*\n`;
+        waMessage += `👤 Name: ${name}\n`;
+        waMessage += `📞 Phone: ${phone}\n`;
+        waMessage += `📍 Address: ${address}\n`;
+        waMessage += `📮 Pincode: ${pincode}\n\n`;
+        waMessage += `I am interested in becoming a distributor for FerriLand.`;
+
+        const encodedMessage = encodeURIComponent(waMessage);
+        const companyNumber = "916282077710";
+        const waUrl = `https://wa.me/${companyNumber}?text=${encodedMessage}`;
+
+        window.open(waUrl, '_blank');
+
+        closeDistModal();
+        distForm.reset();
+    });
+}
