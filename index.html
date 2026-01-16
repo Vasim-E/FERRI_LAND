@@ -153,36 +153,29 @@
                 <h2>Choose Your Moment</h2>
             </div>
             <div class="products-grid">
-                <div class="product-card">
+                <div class="product-card highlight">
                     <div class="card-image">
-                        <div class="temp-box">3-Piece Pack</div>
+                        <img src="rubino_product_hero.png" alt="Ferri Trio">
                     </div>
                     <div class="card-details">
-                        <h3>Ferri Trio</h3>
-                        <p class="price">$5.00</p>
-                        <button class="btn-add">Add to Cart</button>
+                        <h3>Lovely Mom's Kimchi</h3>
+                        <p class="price">₹199</p>
+                        <button class="btn-shop-now">Shop Now</button>
+
                     </div>
                 </div>
                 <div class="product-card highlight">
                     <div class="card-image">
-                        <div class="temp-box">Gift Box 24</div>
+                        <img src="rubino_product_hero2.png" alt="Ferri Grand Box">
                     </div>
                     <div class="card-details">
                         <h3>Ferri Grand Box</h3>
-                        <p class="price">$24.00</p>
-                        <button class="btn-add">Add to Cart</button>
+                        <p class="price">₹299</p>
+                        <button class="btn-shop-now">Shop Now</button>
+
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="card-image">
-                        <div class="temp-box">Tin Edition</div>
-                    </div>
-                    <div class="card-details">
-                        <h3>Ferri Tin Edition</h3>
-                        <p class="price">$35.00</p>
-                        <button class="btn-add">Add to Cart</button>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
@@ -218,6 +211,33 @@
             <p>&copy; 2026 FerriLand Foods. All rights reserved. | GSTIN: 32DNYPAP8495P1ZW</p>
         </div>
     </footer>
+
+    <!-- Order Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modalProductTitle">Place Order</h2>
+            <form class="order-form">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="Your Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea placeholder="Your Delivery Address" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" min="1" value="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Confirm Order</button>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

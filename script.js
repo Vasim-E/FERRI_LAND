@@ -92,3 +92,59 @@ navLinksItems.forEach(item => {
         }
     });
 });
+
+// Order Modal Logic
+const modal = document.getElementById('orderModal');
+const closeBtn = document.querySelector('.close-modal');
+const shopButtons = document.querySelectorAll('.btn-shop-now');
+const modalTitle = document.getElementById('modalProductTitle');
+const orderForm = document.querySelector('.order-form');
+
+// Open Modal
+shopButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        // Find the product title associated with the clicked button
+        // The button is inside .card-details, which is sibling to .card-image
+        // We can traverse up to .product-card then down to h3
+        const card = e.target.closest('.product-card');
+        const productTitle = card.querySelector('h3').textContent;
+
+        modalTitle.textContent = `Order ${productTitle}`;
+        modal.style.display = "block";
+        // Trigger reflow to enable transition
+        void modal.offsetWidth;
+        modal.classList.add('show');
+    });
+});
+
+// Close Modal Function
+const closeModal = () => {
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = "none";
+    }, 300); // Wait for transition
+};
+
+// Close on X click
+if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+}
+
+// Close on outside click
+window.addEventListener('click', (e) => {
+    if (e.target == modal) {
+        closeModal();
+    }
+});
+
+// Handle Form Submit (Simulation)
+if (orderForm) {
+    orderForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Here you would typically send the data to a backend or WhatsApp
+        // For now, let's just show an alert and close the modal
+        alert(`Thank you for your order of ${modalTitle.textContent.replace('Order ', '')}! We will contact you shortly.`);
+        closeModal();
+        orderForm.reset();
+    });
+}
