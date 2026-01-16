@@ -104,7 +104,7 @@ const modal = document.getElementById('orderModal');
 const closeBtn = document.querySelector('.close-modal');
 const shopButtons = document.querySelectorAll('.btn-shop-now');
 const navbarShopBtn = document.getElementById('navShopBtn');
-const orderForm = document.querySelector('.order-form');
+const orderForm = document.querySelector('#orderModal .order-form');
 
 // Function to open modal
 const openModal = (preSelectProductName = null) => {
