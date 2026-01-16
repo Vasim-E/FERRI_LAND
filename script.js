@@ -111,6 +111,8 @@ const openModal = (preSelectProductName = null) => {
     // Reset all quantities to 0
     const qtyInputs = document.querySelectorAll('.qty-input');
     qtyInputs.forEach(input => input.value = 0);
+    // Reset pricing display
+    if (typeof updateTotals === 'function') updateTotals();
 
     // If specific product clicked, set its qty to 1
     if (preSelectProductName) {
@@ -119,7 +121,10 @@ const openModal = (preSelectProductName = null) => {
         productItems.forEach(item => {
             if (item.getAttribute('data-name') === preSelectProductName) {
                 const qtyInput = item.querySelector('.qty-input');
-                if (qtyInput) qtyInput.value = 1;
+                if (qtyInput) {
+                    qtyInput.value = 1;
+                    if (typeof updateTotals === 'function') updateTotals();
+                }
             }
         });
     }
@@ -170,6 +175,28 @@ window.addEventListener('click', (e) => {
     }
 });
 
+// Update Totals Function
+const updateTotals = () => {
+    let grandTotal = 0;
+    document.querySelectorAll('.modal-product-item').forEach(item => {
+        const price = parseFloat(item.getAttribute('data-price')) || 0;
+        const qty = parseInt(item.querySelector('.qty-input').value) || 0;
+        const subtotal = price * qty;
+
+        // Update subtotal text
+        item.querySelector('.item-subtotal').textContent = `₹${subtotal}`;
+        grandTotal += subtotal;
+    });
+
+    // Update Grand Total
+    const grandTotalEl = document.getElementById('grandTotal');
+    if (grandTotalEl) {
+        grandTotalEl.textContent = `₹${grandTotal}`;
+    }
+
+    return grandTotal;
+};
+
 // Quantity Button Logic
 const mpQtyContainers = document.querySelectorAll('.mp-qty');
 
@@ -182,14 +209,20 @@ mpQtyContainers.forEach(container => {
         let currentValue = parseInt(input.value) || 0;
         if (currentValue > 0) {
             input.value = currentValue - 1;
+            updateTotals();
         }
     });
 
     plusBtn.addEventListener('click', () => {
         let currentValue = parseInt(input.value) || 0;
         input.value = currentValue + 1;
+        updateTotals();
     });
 });
+
+// Initialize totals on modal open (part of openModal logic or separate)
+// We'll just ensure they are reset when updated. The openModal function resets values to 0, so we should call updateTotals there too if possible, 
+// OR simpler: manually call it inside openModal. Let's patch openModal separately or rely on the resets.
 
 // Handle Form Submit
 if (orderForm) {
@@ -198,13 +231,19 @@ if (orderForm) {
 
         // Collect ordered items
         const orderedItems = [];
+        let calculatedGrandTotal = 0;
+
         const productItems = document.querySelectorAll('.modal-product-item');
 
         productItems.forEach(item => {
             const name = item.getAttribute('data-name');
+            const price = parseFloat(item.getAttribute('data-price')) || 0;
             const qty = parseInt(item.querySelector('.qty-input').value) || 0;
+
             if (qty > 0) {
-                orderedItems.push(`${name} (x${qty})`);
+                const subtotal = price * qty;
+                orderedItems.push(`${name} (x${qty}) - ₹${subtotal}`);
+                calculatedGrandTotal += subtotal;
             }
         });
 
@@ -214,14 +253,34 @@ if (orderForm) {
         }
 
         const customerName = document.getElementById('customerName').value;
+        const customerPhone = document.getElementById('customerPhone').value;
+        const customerAddress = document.getElementById('customerAddress').value;
 
-        // Construct message
-        const message = `Thank you ${customerName}! Your order has been placed:\n\n${orderedItems.join('\n')}\n\nWe will contact you shortly to confirm details.`;
+        // Construct WhatsApp Message
+        let waMessage = `*New Order from FerriLand Website* 🛍️\n\n`;
+        waMessage += `*Customer Details:*\n`;
+        waMessage += `👤 Name: ${customerName}\n`;
+        waMessage += `📞 Phone: ${customerPhone}\n`;
+        waMessage += `📍 Address: ${customerAddress}\n\n`;
+        waMessage += `*Order Items:*\n`;
+        waMessage += orderedItems.join('\n');
+        waMessage += `\n\n*Total Amount: ₹${calculatedGrandTotal}*\n`;
+        waMessage += `-----------------------------`;
 
-        alert(message);
+        // Encode message for URL
+        const encodedMessage = encodeURIComponent(waMessage);
+
+        // WhatsApp URL
+        const companyNumber = "916282077710";
+        const waUrl = `https://wa.me/${companyNumber}?text=${encodedMessage}`;
+
+        // Redirect to WhatsApp
+        window.open(waUrl, '_blank');
+
         closeModal();
         orderForm.reset();
         // Reset quantities manually
         document.querySelectorAll('.qty-input').forEach(input => input.value = 0);
+        updateTotals(); // Reset totals display
     });
 }

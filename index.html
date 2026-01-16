@@ -166,7 +166,7 @@
                 </div>
                 <div class="product-card highlight">
                     <div class="card-image">
-                        <img src="rubino_product_hero2.png" alt="Ferri Grand Box">
+                        <img src="ferri_grant_box.png" alt="Ferri Grand Box">
                     </div>
                     <div class="card-details">
                         <h3>Ferri Grand Box</h3>
@@ -220,32 +220,42 @@
             <form class="order-form">
                 <div class="modal-products">
                     <!-- Product 1 -->
-                    <div class="modal-product-item" data-name="Lovely Mom's Kimchi">
+                    <div class="modal-product-item" data-name="Lovely Mom's Kimchi" data-price="199">
                         <img src="rubino_product_hero.png" alt="Kimchi">
                         <div class="mp-info">
                             <h4>Lovely Mom's Kimchi</h4>
-                            <p>₹199</p>
+                            <p class="price-tag">₹199</p>
                         </div>
-                        <div class="mp-qty">
-                            <button type="button" class="qty-btn minus"><i class="fas fa-minus"></i></button>
-                            <input type="number" min="0" value="0" class="qty-input" readonly>
-                            <button type="button" class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                        <div class="mp-actions">
+                            <div class="mp-qty">
+                                <button type="button" class="qty-btn minus"><i class="fas fa-minus"></i></button>
+                                <input type="number" min="0" value="0" class="qty-input" readonly>
+                                <button type="button" class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <p class="item-subtotal">₹0</p>
                         </div>
                     </div>
 
                     <!-- Product 2 -->
-                    <div class="modal-product-item" data-name="Ferri Grand Box">
-                        <img src="rubino_product_hero2.png" alt="Ferri Grand Box">
+                    <div class="modal-product-item" data-name="Ferri Grand Box" data-price="299">
+                        <img src="ferri_grant_box.png" alt="Ferri Grand Box">
                         <div class="mp-info">
                             <h4>Ferri Grand Box</h4>
-                            <p>₹299</p>
+                            <p class="price-tag">₹299</p>
                         </div>
-                        <div class="mp-qty">
-                            <button type="button" class="qty-btn minus"><i class="fas fa-minus"></i></button>
-                            <input type="number" min="0" value="0" class="qty-input" readonly>
-                            <button type="button" class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                        <div class="mp-actions">
+                            <div class="mp-qty">
+                                <button type="button" class="qty-btn minus"><i class="fas fa-minus"></i></button>
+                                <input type="number" min="0" value="0" class="qty-input" readonly>
+                                <button type="button" class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <p class="item-subtotal">₹0</p>
                         </div>
                     </div>
+                </div>
+
+                <div class="total-section">
+                    <h3>Total Amount: <span id="grandTotal">₹0</span></h3>
                 </div>
 
                 <div class="customer-details">

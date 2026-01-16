@@ -848,6 +848,12 @@ footer {
     .parallax-section {
         height: 200px;
     }
+
+    .btn-secondary {
+        margin-top: 1rem;
+        display: inline-flex;
+        /* Ensure it respects margin if wrapping */
+    }
 }
 
 /* Slideshow Container */
@@ -1060,16 +1066,19 @@ footer {
 
 .modal-content {
     background-color: #fff;
-    margin: 10% auto;
-    padding: 2.5rem;
+    margin: 3vh auto;
+    /* Compact spacing */
+    padding: 2rem;
     border: 1px solid var(--primary-gold);
     width: 90%;
-    max-width: 500px;
+    max-width: 700px;
     border-radius: 15px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
     position: relative;
     transform: translateY(-50px);
     transition: transform 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .modal.show .modal-content {
@@ -1094,12 +1103,14 @@ footer {
 .modal-content h2 {
     font-family: var(--font-heading);
     color: var(--primary-red);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    /* Reduced */
     text-align: center;
 }
 
 .form-group {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
+    /* Reduced */
 }
 
 .form-group label {
@@ -1130,13 +1141,27 @@ footer {
     border-color: var(--primary-gold);
 }
 
-
-
 .modal-products {
     max-height: 250px;
     overflow-y: auto;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    /* Reduced */
     padding-right: 5px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.modal-content::-webkit-scrollbar,
+.modal-products::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.modal-content,
+.modal-products {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .modal-product-item {
@@ -1167,10 +1192,23 @@ footer {
     color: var(--text-dark);
 }
 
-.mp-info p {
+.price-tag {
     color: var(--primary-red);
     font-weight: 600;
     font-size: 0.9rem;
+}
+
+.mp-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.item-subtotal {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--primary-gold);
 }
 
 .mp-qty {
@@ -1180,7 +1218,23 @@ footer {
     border-radius: 5px;
     overflow: hidden;
     width: 100px;
-    /* Reduced fixed width or auto */
+}
+
+.total-section {
+    text-align: right;
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.total-section h3 {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+}
+
+.total-section span {
+    color: var(--primary-red);
+    font-weight: 700;
 }
 
 .qty-btn {
