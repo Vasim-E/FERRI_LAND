@@ -125,8 +125,12 @@ const openModal = (preSelectProductName = null) => {
     }
 
     modal.style.display = "block";
-    void modal.offsetWidth; // Trigger reflow
-    modal.classList.add('show');
+    // Double RAF to ensure browser has painted the display:block state
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            modal.classList.add('show');
+        });
+    });
 };
 
 // Open Modal from Product Cards

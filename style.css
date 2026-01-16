@@ -1030,6 +1030,12 @@ footer {
         transform: translateY(0) !important;
         margin-top: 5px;
     }
+
+    /* Disable side animations on mobile, make them come from bottom */
+    .reveal-left,
+    .reveal-right {
+        transform: translateY(30px);
+    }
 }
 
 /* Modal Styles */
